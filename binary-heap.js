@@ -1,17 +1,17 @@
 class MinHeap {
-    constructor(){
+    constructor() {
         this.heap = [];
     }
 
     //insert new element
-    insert(value){
+    insert(value) {
         this.heap.push(value);
         //represents the last index
         this.bubbleUp(this.heap.length - 1);
     }
     
     //always removes min element 
-    remove(){
+    remove() {
         if (this.checkIfEmpty()) {
             return null;
           }
@@ -24,12 +24,12 @@ class MinHeap {
           return min;
     }
     //returns length of heap/array
-    size(){
+    size() {
         return this.heap.length;
     }
 
     //check if array is empty
-    checkIfEmpty(){
+    checkIfEmpty() {
         return this.heap.length === 0;
     }
 
@@ -37,7 +37,7 @@ class MinHeap {
     //will always be last element in array
     bubbleUp(index) {
         let parentIndex = Math.floor((index-1)/2);
-        while(index > 0 && this.heap[index] < this.heap[parentIndex]){
+        while(index > 0 && this.heap[index] < this.heap[parentIndex]) {
             [this.heap[index], this.heap[parentIndex]] = [this.heap[parentIndex], this.heap[index]];
             index = parentIndex;
             parentIndex = Math.floor((index - 1) / 2);
@@ -62,20 +62,22 @@ class MinHeap {
         }
     }
 
+
     printTree() {
         this.printTreeNode(0, '', '');
       }
-
+    
     printTreeNode(index, prefix, childPrefix) {
-    if (index < this.heap.length) {
-        const leftChildIndex = 2 * index + 1;
-        const rightChildIndex = 2 * index + 2;
-        if (leftChildIndex < this.heap.length || rightChildIndex < this.heap.length) {
-        this.printTreeNode(rightChildIndex, childPrefix + '├── ', childPrefix + '│   ');
-        this.printTreeNode(leftChildIndex, childPrefix + '└── ', childPrefix + '    ');
+        if (index < this.heap.length) {
+            console.log(prefix + this.heap[index]);
+            const leftChildIndex = 2 * index + 1;
+            const rightChildIndex = 2 * index + 2;
+            if (leftChildIndex < this.heap.length || rightChildIndex < this.heap.length) {
+            this.printTreeNode(rightChildIndex, childPrefix + '├── ', childPrefix + '│   ');
+            this.printTreeNode(leftChildIndex, childPrefix + '└── ', childPrefix + '    ');
+            }
         }
     }
-    } 
 }
 
 
