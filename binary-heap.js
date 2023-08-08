@@ -15,15 +15,12 @@ class MinHeap {
         if (this.checkIfEmpty()) {
             return null;
           }
-          
           const min = this.heap[0];
           const last = this.heap.pop();
-
           if (!this.checkIfEmpty()) {
             this.heap[0] = last;
             this.bubbleDown(0);
           }
-          
           return min;
     }
     //returns length of heap/array
@@ -47,6 +44,7 @@ class MinHeap {
         }
     }
 
+    //sorts new root element (last gets moved to first)
     bubbleDown(index) {
         const leftChildIndex = 2 * index + 1;
         const rightChildIndex = 2 * index + 2;
@@ -67,17 +65,17 @@ class MinHeap {
     printTree() {
         this.printTreeNode(0, '', '');
       }
-    
-      printTreeNode(index, prefix, childPrefix) {
-        if (index < this.heap.length) {
-          const leftChildIndex = 2 * index + 1;
-          const rightChildIndex = 2 * index + 2;
-          if (leftChildIndex < this.heap.length || rightChildIndex < this.heap.length) {
-            this.printTreeNode(rightChildIndex, childPrefix + '├── ', childPrefix + '│   ');
-            this.printTreeNode(leftChildIndex, childPrefix + '└── ', childPrefix + '    ');
-          }
+
+    printTreeNode(index, prefix, childPrefix) {
+    if (index < this.heap.length) {
+        const leftChildIndex = 2 * index + 1;
+        const rightChildIndex = 2 * index + 2;
+        if (leftChildIndex < this.heap.length || rightChildIndex < this.heap.length) {
+        this.printTreeNode(rightChildIndex, childPrefix + '├── ', childPrefix + '│   ');
+        this.printTreeNode(leftChildIndex, childPrefix + '└── ', childPrefix + '    ');
         }
-      } 
+    }
+    } 
 }
 
 
